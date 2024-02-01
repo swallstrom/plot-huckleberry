@@ -1,2 +1,5 @@
 # Ignore the input csv file
 Huckleberry*.csv
+
+# Ignore output plots
+*.png

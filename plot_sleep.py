@@ -24,7 +24,7 @@ s['Start_rad'] = (s['Start'].dt.hour+s['Start'].dt.minute/60)*2*np.pi/24
 s['End_rad'] = (s['End'].dt.hour+s['End'].dt.minute/60)*2*np.pi/24
 
 ## Assign different colors to different start locations (where the baby fell asleep)
-sleepcolors = {'Worn or held':'cyan', 'Co sleep':'salmon', 'Stroller':'forestgreen', 'Nursing':'darkviolet', 'other':'silver'}
+sleepcolors = {'Worn or held':'mediumorchid', 'Co sleep':'lightcoral', 'Stroller':'limegreen', 'Nursing':'cornflowerblue', 'other':'darkgrey'}
 
 ## Create a figure with polar coordinates, and for each row in the data frame plot an arc between the start and end time, at a radius corresponding to N_days (plus 50 to make the inner part of the plot more visible)
 fig = plt.figure(figsize=(8,8))
@@ -53,7 +53,7 @@ ax.set_xticklabels(['00', ' ', '06', '09', '12', '15', '18', ' 21', '00'])
 
 ## Turn off the radial axis ticks, and the grid
 ax.set_rticks([])
-ax.grid=False
+ax.grid(False)
 
 ## Remove duplicate labels and plot the legend, moving it to slightly outside the plot
 handles, labels = plt.gca().get_legend_handles_labels()
@@ -62,7 +62,7 @@ handles = [handles[i] for i in ids]
 plt.legend(handles, labels, fontsize=8, loc='lower left', bbox_to_anchor=(.5 + np.cos(np.pi/4)/2, .5 + np.sin(np.pi/4)/2))
 
 ## Set a title, save figure as .png image and plot
-plt.title("My son's sleep from age 2-12 months")
+plt.title("My son's sleep from age 2 months (center) to 1 year")
 plt.savefig('sleep.pdf', bbox_inches='tight')
 plt.show()
 

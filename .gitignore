@@ -3,3 +3,4 @@ Huckleberry*.csv
 
 # Ignore output plots
 *.png
+*.pdf

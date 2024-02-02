@@ -1,11 +1,14 @@
 '''
-Make a circular plot of my son's sleep over
+Make a circular plot of my child's sleep, one circle per day moving outwards as they grow, colorized by how they fell asleep
 '''
-
 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+
+
+## Start with an offset from the centre for visual clarity
+center_offset = 50
 
 ## Read in the csv data file as a pandas dataframe, and split off the sleep entries
 df = pd.read_csv('Huckleberry_latest.csv')
@@ -17,7 +20,7 @@ s['End'] = pd.to_datetime(s['End'])
 
 ## Find date of first entry, and add a new colum with the number of days since then (dividing by "1 day" timedelta)
 init_date = s['Start'].min().date()
-s['N_days'] = ((s['Start'].dt.date - init_date)/np.timedelta64(1, 'D'))+50
+s['N_days'] = ((s['Start'].dt.date - init_date)/np.timedelta64(1, 'D'))+ center_offset
 
 ## Add new columns with the start and end times converted into radians, assuming 24h makes a full circle (= 2*pi radians)
 s['Start_rad'] = (s['Start'].dt.hour+s['Start'].dt.minute/60)*2*np.pi/24
@@ -62,7 +65,7 @@ handles = [handles[i] for i in ids]
 plt.legend(handles, labels, fontsize=8, loc='lower left', bbox_to_anchor=(.5 + np.cos(np.pi/4)/2, .5 + np.sin(np.pi/4)/2))
 
 ## Set a title, save figure as .png image and plot
-plt.title("My son's sleep from age 2 months (center) to 1 year")
+plt.title("My child's sleep up to age {:.0f} months".format((s['N_days'].max()-center_offset)/30))
 plt.savefig('sleep.pdf', bbox_inches='tight')
 plt.show()
 

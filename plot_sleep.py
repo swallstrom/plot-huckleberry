@@ -11,7 +11,7 @@ import pandas as pd
 center_offset = 50
 
 ## Read in the csv data file as a pandas dataframe, and split off the sleep entries
-df = pd.read_csv('Huckleberry_latest.csv')
+df = pd.read_csv('Huckleberry_latest_Y.csv')
 s = df[df['Type'] == 'Sleep'].copy()
 
 ## Convert start dates/times and duration times to datetime objects
@@ -27,7 +27,7 @@ s['Start_rad'] = (s['Start'].dt.hour+s['Start'].dt.minute/60)*2*np.pi/24
 s['End_rad'] = (s['End'].dt.hour+s['End'].dt.minute/60)*2*np.pi/24
 
 ## Assign different colors to different start locations (where the baby fell asleep)
-sleepcolors = {'Worn or held':'mediumorchid', 'Co sleep':'lightcoral', 'Stroller':'limegreen', 'Nursing':'cornflowerblue', 'other':'darkgrey'}
+sleepcolors = {'Worn or held':'mediumorchid', 'Co sleep':'lightcoral', 'Stroller':'limegreen', 'Nursing':'cornflowerblue', 'On own in bed':'gold', 'other':'darkgrey'}
 
 ## Create a figure with polar coordinates, and for each row in the data frame plot an arc between the start and end time, at a radius corresponding to N_days (plus 50 to make the inner part of the plot more visible)
 fig = plt.figure(figsize=(8,8))

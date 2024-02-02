@@ -1,5 +1,5 @@
 '''
-Make a circular plot of my child's sleep, one circle per day moving outwards as they grow, colorized by how they fell asleep
+Make a circular plot of child's sleep, one circle per day moving outwards as they grow, colorized by how they fell asleep
 '''
 
 import numpy as np
@@ -14,7 +14,7 @@ center_offset = 50
 df = pd.read_csv('Huckleberry_latest_Y.csv')
 s = df[df['Type'] == 'Sleep'].copy()
 
-## Convert start dates/times and duration times to datetime objects
+## Convert start and end dates/times to datetime objects
 s['Start'] = pd.to_datetime(s['Start'])
 s['End'] = pd.to_datetime(s['End'])
 
